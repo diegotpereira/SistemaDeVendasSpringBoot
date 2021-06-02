@@ -1,3 +1,68 @@
 <nav th:fragment="menu" class="navbar-fixed-top navbar-expand-md navbar-dark bg-dark">
-    
+    <label id="Titulo" class="navbar-brand"></label>
+    <a href="/" class="navbar-brand">Sistema de Vendas</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cadastros
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Cadastro</a>
+                            <a class="dropdown-item" href="#">Consulta</a>
+                        </ul>
+
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Funcionários</a>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Cadastro</a>
+                                <a class="dropdown-item" href="#">Consulta</a>
+                            </ul>
+                        </li>
+
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Fornecedores</a>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Cadastro</a>
+                                <a class="dropdown-item" href="#">Consulta</a>
+                            </ul>
+                            
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Produtos</a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Cadastro</a>
+                                    <a class="dropdown-item" href="#">Consulta</a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="navbar-nav"><a class="nav-link" href="#">Vendas</a></li>
+                    <li class="navbar-nav"><a class="nav-link" href="#">Estoque</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Cliente</a></li>
+                            <li><a class="dropdown-item" href="#">Fornecedor</a></li>
+                            <li><a class="dropdown-item" href="#">Funcionário</a></li>
+                            <li><a class="dropdown-item" href="#">Produto</a></li>
+                        </ul>
+                    </li>
+                    <li class="navbar-nav"><a class="nav-link" href="#">Suporte</a></li>
+        </ul>
+    </div>
 </nav>
