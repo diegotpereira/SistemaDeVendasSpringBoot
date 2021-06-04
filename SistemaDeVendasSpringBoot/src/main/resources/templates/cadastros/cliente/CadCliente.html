@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <section class="layout-content" layout:fragment="corpo">
+            <div class="container">
+                <br/>
+                <nav class="navbar navbar-expand-md bg-dark">
+                    <div class="collapse navbar-collapse" id="navbarExampleDefault">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <span class="tituloForm">Cadastrar Cliente</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a class="btn btn-primary btn-md" href="#" role="button">
+                        <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+                        <span>Consultar Clientes</span>
+                    </a>
+                </nav>
+                <br/>
+                <br/>
+                <div th:replace="fragments/alert"></div>
+
+                <form class="for-horizontal" th:action="" th:object="" method="POST">
+                    <div class="form-group row">
+                        <label for="nome" class="col-sm-2 control-label">Nome</label>
+                        <div class="col-sm-7">
+                            <input type="text" required class="form-control" id="txtNome" placeholder="Digite nome do cliente" th:field="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="endereco" class="col-sm-2 control-label">Endereço</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="txtendereco" placeholder="Digite o endereço" th:field="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="endereco" class="col-sm-2 control-label">Bairro</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="txtbairro" placeholder="Digite o bairro" th:field="">
+                        </div>
+                        <label for="numero" class="col-sm-=1 control-label">Número</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txtnumero" placeholder="Digite o número" th:field="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="cidade" class="col-sm-2 control-label">Cidade</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id=txtCidade placeholder="Digite a cidade" th:field="">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </body>
+</html>
