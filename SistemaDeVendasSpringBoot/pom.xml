@@ -38,12 +38,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
-		<!--  Dialeto de layout personalizado -->
+
+		<!-- Dialeto de layout personalizado -->
 
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+
+
+		<!-- Webjar Locator -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>0.30</version>
 		</dependency>
 
 		<!-- Bootstrap -->
@@ -52,6 +60,28 @@
 			<artifactId>bootstrap</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+
+		<!-- Web -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>open-iconic</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- Jquery -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.3.1-1</version>
+		</dependency>
+
+		<!-- Jquery Mask-->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery-mask-plugin</artifactId>
+			<version>1.14.15</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
