@@ -12,4 +12,8 @@ public class FornecedorController {
 	public String cadastrar() {
 		return "cadastros/fornecedor/CadFornecedor";
 	}
+	@GetMapping("/consultar")
+	public String consultar() {
+		return "cadastros/fornecedor/ConsFornecedor";
+	}
 }
