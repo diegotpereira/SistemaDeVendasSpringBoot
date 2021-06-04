@@ -57,6 +57,46 @@
                         <div class="col-sm-3">
                             <input type="text" class="form-control" id=txtCidade placeholder="Digite a cidade" th:field="">
                         </div>
+                        <div class="form-group row">
+                            <label for="uf" class="col-sm-2 control-label">UF</label>
+                            <div class="col-sm-8">
+                                <select id="uf" class="form-control" th:field="">
+                                    <option value="">UF</option>
+
+                                    <option th:each="" th:value="" th:text=""></option>
+                                </select>
+
+                                <div class="invalid-feedback">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="cep" class="col-sm-2 control-label">Cep</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="txtcep" data-mask="00000-000" th:field="" placeholder="Digite o cep">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 control-label">E-mail</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="txtemail" placeholder="Digite o e-mail" th:field="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="telefone" class="col-sm-2 control-label">Telefone</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txttelefone" placeholder="Digite o telefone" data-mask="(00)00000-0000" th:field="">
+                        </div>
+                    </div>
+
+                    <div align="center" class="form-group">
+                        <input type="hidden" id="id" th:field=""/>
+                        <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
 
                 </form>

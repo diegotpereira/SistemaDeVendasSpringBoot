@@ -30,5 +30,39 @@
 
         <div th:replace="fragments/footer :: footer"></div>
     </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Colocado no final do documento para que as páginas carreguem mais rápido -->
+
+    <script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        // Script do submenu
+        $('.dropdown-menu a.dropdown-toggle').on(
+            'click',
+            function(e){
+                if (!$(this).next().hasClass('show')) {
+                    $(this).parents('dropdown-menu').first().find('.show')
+                    .removeClass("show");
+                }
+                var $subMenu = $(this).next(".dropdown-menu");
+                $subMenu.toggleClass('show');
+
+                $(this).parents('li.nav-item.dropdown.show').on(
+                    'hidden.bs.dropdown',
+                    function(e){
+                        $('.dropdown-submenu .show')
+                                    .removeClass("show");
+                    }
+                );
+
+                return false;
+            }
+        );
+    </script>
 </body>
 </html>
