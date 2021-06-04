@@ -15,6 +15,6 @@ public class FuncionarioController {
 	
 	@GetMapping("consultar")
 	public String consultar() {
-		return "cadastros/funcionario/CadFuncionario";
+		return "cadastros/funcionario/ConsFuncionario";
 	}
 }
