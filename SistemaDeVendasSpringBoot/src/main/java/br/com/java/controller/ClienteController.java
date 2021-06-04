@@ -12,5 +12,9 @@ public class ClienteController {
 	public String cadastrar() {
 		return "cadastros/cliente/CadCliente";
 	}
-
+	
+	@GetMapping("/consultar")
+	public String consultar() {
+		return "cadastros/cliente/ConCliente";
+	}
 }
