@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
     <head>
         <meta charset="UTF-8">
     </head>
@@ -9,7 +9,7 @@
             <div class="container">
                 <br/>
                 <nav class="navbar navbar-expand-md bg-dark">
-                    <div class="collapse navbar-collapse" id="navbarExampleDefault">
+                    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
                                 <span class="tituloForm">Cadastrar Cliente</span>
@@ -24,46 +24,46 @@
                 </nav>
                 <br/>
                 <br/>
-                <div th:replace="fragments/alert"></div>
+<!--                 <div th:replace=""></div> -->
 
-                <form class="for-horizontal" th:action="" th:object="" method="POST">
+                <form class="form-horizontal"  method="POST">
                     <div class="form-group row">
                         <label for="nome" class="col-sm-2 control-label">Nome</label>
                         <div class="col-sm-7">
-                            <input type="text" required class="form-control" id="txtNome" placeholder="Digite nome do cliente" th:field="">
+                            <input type="text" required class="form-control" id="txtnome" placeholder="Digite nome do cliente" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="endereco" class="col-sm-2 control-label">Endereço</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="txtendereco" placeholder="Digite o endereço" th:field="">
+                            <input type="text" class="form-control" id="txtendereco" placeholder="Digite o endereço" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="endereco" class="col-sm-2 control-label">Bairro</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="txtbairro" placeholder="Digite o bairro" th:field="">
+                            <input type="text" class="form-control" id="txtbairro" placeholder="Digite o bairro" >
                         </div>
                         <label for="numero" class="col-sm-=1 control-label">Número</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtnumero" placeholder="Digite o número" th:field="">
+                            <input type="text" class="form-control" id="txtnumero" placeholder="Digite o número">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="cidade" class="col-sm-2 control-label">Cidade</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id=txtCidade placeholder="Digite a cidade" th:field="">
+                            <input type="text" class="form-control" id=txtCidade placeholder="Digite a cidade" >
                         </div>
                         <div class="form-group row">
                             <label for="uf" class="col-sm-2 control-label">UF</label>
                             <div class="col-sm-8">
-                                <select id="uf" class="form-control" th:field="">
+                                <select id="uf" class="form-control">
                                     <option value="">UF</option>
 
-                                    <option th:each="" th:value="" th:text=""></option>
+                                    <option ></option>
                                 </select>
 
                                 <div class="invalid-feedback">
@@ -75,7 +75,7 @@
                         <div class="form-group row">
                             <label for="cep" class="col-sm-2 control-label">Cep</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="txtcep" data-mask="00000-000" th:field="" placeholder="Digite o cep">
+                                <input type="text" class="form-control" id="txtcep" data-mask="00000-000"  placeholder="Digite o cep">
                             </div>
                         </div>
                     </div>
@@ -83,19 +83,19 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 control-label">E-mail</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="txtemail" placeholder="Digite o e-mail" th:field="">
+                            <input type="text" class="form-control" id="txtemail" placeholder="Digite o e-mail" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="telefone" class="col-sm-2 control-label">Telefone</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="txttelefone" placeholder="Digite o telefone" data-mask="(00)00000-0000" th:field="">
+                            <input type="text" class="form-control" id="txttelefone" placeholder="Digite o telefone" data-mask="(00)00000-0000" >
                         </div>
                     </div>
 
                     <div align="center" class="form-group">
-                        <input type="hidden" id="id" th:field=""/>
+                        <input type="hidden" id="id" />
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
 
