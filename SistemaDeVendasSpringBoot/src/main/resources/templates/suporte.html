@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <section layout:fragment="corpo">
+            <div class="container">
+                <br/>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                        <nav class="navbar navbar-light bg-dark">
+                            <label class="statusVenda">Suporte</label>
+                        </nav>
+                    </div>
+                    <div class="col-sm-1"></div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="well well-sm">
+                        <form class="form-horizontal" method="POST">
+                            <fieldset>
+                                <legend class="text-center header texto">Fale conosco</legend>
+                                <span class="texto">Mande sua dúvida ou sugestão que o mais breve possível retornamos!</span>
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center">
+                                        <i class="fa fa-user bigicon"></i>
+                                    </span>
+                                    <div class="col-md-8">
+                                        <input id="fnmame" name="name" type="text" placeholder="Digite o nome" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center">
+                                        <i class="fa fa-envelope-o bigicon">
+                                        </i>
+                                    </span>
+
+                                    <div class="col-md-8">
+                                        <input id="email" name="email" type="text" placeholder="Digite o email" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offeset-2 text-center">
+                                        <i class="fa fa-phone-square bigicon"></i>
+                                    </span>
+                                    <div class="col-md-8">
+                                        <input id="phone" name="phone" type="text" placeholder="Digite o telefone" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center">
+                                        <i class="fa fa-pencil-square-o bigicon"></i>
+                                    </span>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="message" name="message" placeholder="Escreva aqui a sua mensagem!" rows="7"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
