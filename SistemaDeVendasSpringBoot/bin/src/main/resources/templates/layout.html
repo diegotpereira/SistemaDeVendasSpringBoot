@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sistema de vendas com controle de estoque</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content=""/>
+<meta name="author" content="Diego Pereira" />
+<link rel="icon" th:href="@{/image/favicon.png}" />
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
+
+<!-- Estilos personalizados para este modelo -->
+<link th:href="@{/css/carousel.css}" rel="stylesheet" />
+<link th:href="@{/css/meuEstilo.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div th:replace="fragments/menus :: menu"></div>
+
+        <section layout:fragment="corpo">
+            <div></div>
+        </section>
+
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Colocado no final do documento para que as páginas carreguem mais rápido -->
+
+    <script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        // Script do submenu
+        $('.dropdown-menu a.dropdown-toggle').on(
+            'click',
+            function(e){
+                if (!$(this).next().hasClass('show')) {
+                    $(this).parents('dropdown-menu').first().find('.show')
+                    .removeClass("show");
+                }
+                var $subMenu = $(this).next(".dropdown-menu");
+                $subMenu.toggleClass('show');
+
+                $(this).parents('li.nav-item.dropdown.show').on(
+                    'hidden.bs.dropdown',
+                    function(e){
+                        $('.dropdown-submenu .show')
+                                    .removeClass("show");
+                    }
+                );
+
+                return false;
+            }
+        );
+    </script>
+</body>
+</html>
