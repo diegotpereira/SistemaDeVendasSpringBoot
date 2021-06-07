@@ -65,9 +65,9 @@
 
         // Script botão excluir
         var url = '';
-        $('button[id*="btn_"]').click(function(){
-            url = "/" + $(this).attr('id').split("_")[1];
-        });
+		$('button[id*="btn_"]').click(function() {
+			url = "/" + $(this).attr('id').split("_")[1];
+		});
         // Botão  confirmar
         $('#ok_confirm').click(function(){
             document.location.href = url;
