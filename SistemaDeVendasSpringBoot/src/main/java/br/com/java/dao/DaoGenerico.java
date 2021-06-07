@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-public class DaoGenerico <T, PK extends Serializable> {
+public abstract class DaoGenerico <T, PK extends Serializable> {
 	
 	@SuppressWarnings("unchecked")
 	private final Class<T> entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -38,7 +38,7 @@ public class DaoGenerico <T, PK extends Serializable> {
 	
 	public List<T>findAll(){
 		return entityManager
-				.createQuery("from" + entityClass.getSimpleName(), entityClass)
+				.createQuery("from " + entityClass.getSimpleName(), entityClass)
 				.getResultList();
 	}
 	
