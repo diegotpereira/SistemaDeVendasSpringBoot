@@ -26,44 +26,48 @@
                 <br/>
 <!--                 <div th:replace=""></div> -->
 
-                <form class="form-horizontal"  method="POST">
+                <form class="form-horizontal" 
+                      th:action = "${cliente.id == null} ? @{/cadastros/cliente/salvar} : @{/cadastros/cliente/editar}" 
+                      th:object = "${cliente}"
+                      method="POST">
                     <div class="form-group row">
                         <label for="nome" class="col-sm-2 control-label">Nome</label>
                         <div class="col-sm-7">
-                            <input type="text" required class="form-control" id="txtnome" placeholder="Digite nome do cliente" >
+                            <input type="text" required class="form-control" id="txtnome" 
+                                   placeholder="Digite nome do cliente" th:field = "*{nome}" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="endereco" class="col-sm-2 control-label">Endereço</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="txtendereco" placeholder="Digite o endereço" >
+                            <input type="text" class="form-control" id="txtendereco" placeholder="Digite o endereço" th:field = "*{endereco}" >
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="endereco" class="col-sm-2 control-label">Bairro</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="txtbairro" placeholder="Digite o bairro" >
+                            <input type="text" class="form-control" id="txtbairro" placeholder="Digite o bairro" th:field = "*{bairro}">
                         </div>
                         <label for="numero" class="col-sm-=1 control-label">Número</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtnumero" placeholder="Digite o número">
+                            <input type="text" class="form-control" id="txtnumero" placeholder="Digite o número" th:field = "*{numero}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="cidade" class="col-sm-2 control-label">Cidade</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id=txtCidade placeholder="Digite a cidade" >
+                            <input type="text" class="form-control" id=txtCidade placeholder="Digite a cidade" th:field = "*{cidade}">
                         </div>
                         <div class="form-group row">
                             <label for="uf" class="col-sm-2 control-label">UF</label>
                             <div class="col-sm-8">
-                                <select id="uf" class="form-control">
+                                <select id="uf" class="form-control" th:field = "*{uf}">
                                     <option value="">UF</option>
 
-                                    <option ></option>
+                                    <option th:each = "uf : ${ufs}" th:value = "${uf}" th:text = "${uf}"></option>
                                 </select>
 
                                 <div class="invalid-feedback">
@@ -75,7 +79,7 @@
                         <div class="form-group row">
                             <label for="cep" class="col-sm-2 control-label">Cep</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="txtcep" data-mask="00000-000"  placeholder="Digite o cep">
+                                <input type="text" class="form-control" id="txtcep" data-mask="00000-000"  placeholder="Digite o cep" th:field = "*{cep}">
                             </div>
                         </div>
                     </div>
@@ -83,19 +87,19 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 control-label">E-mail</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="txtemail" placeholder="Digite o e-mail" >
+                            <input type="text" class="form-control" id="txtemail" placeholder="Digite o e-mail" th:field = "*{email}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="telefone" class="col-sm-2 control-label">Telefone</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="txttelefone" placeholder="Digite o telefone" data-mask="(00)00000-0000" >
+                            <input type="text" class="form-control" id="txttelefone" placeholder="Digite o telefone" data-mask="(00)00000-0000" th:field = "*{telefone}" >
                         </div>
                     </div>
 
                     <div align="center" class="form-group">
-                        <input type="hidden" id="id" />
+                        <input type="hidden" id="id" th:field = "*{id}"/>
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
 
