@@ -58,4 +58,12 @@ public class ClienteController {
 		attr.addFlashAttribute("sucesso", "Cliente atualizado com sucesso!.");
 		return "redirect:/cadastros/cliente/cadastrar";
 	}
+
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr){
+		service.excluir(id);
+		attr.addFlashAttribute("sucesso", "Cliente excluido com sucesso!");
+
+		return "redirect:/cadastros/cliente/consultar";
+	}
 }
