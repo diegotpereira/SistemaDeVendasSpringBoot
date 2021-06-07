@@ -40,7 +40,7 @@
                         <tbody>
                             <tr th:each = "c : ${clientes}">
                                 <td th:text = "${c.id}">id</td>
-                                <tf th:txt  = "${c.nome}">nome</tf>
+                                <td th:text  = "${c.nome}">nome</td>
                                 <td>
                                     <button type="button" class="btn btn-secondary btn-sm" 
                                             data-container="body" 
@@ -67,7 +67,7 @@
                                             class="btn btn-danger btn-sm" 
                                             data-toggle="modal" 
                                             data-target="#myModal" 
-                                            th:id = "${'btn_cadastros/cliente/excluir/' + c.id}">
+                                            th:id = "${ 'btn_cadastros/cliente/excluir/' + c.id}">
                                         <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
                                     </button>
                                 </td>

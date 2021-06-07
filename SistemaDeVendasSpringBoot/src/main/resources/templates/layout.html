@@ -3,7 +3,6 @@
     xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="ISO-8859-1">
 <title>Sistema de vendas com controle de estoque</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -46,7 +45,7 @@
             'click',
             function(e){
                 if (!$(this).next().hasClass('show')) {
-                    $(this).parents('dropdown-menu').first().find('.show')
+                    $(this).parents('.dropdown-menu').first().find('.show')
                     .removeClass("show");
                 }
                 var $subMenu = $(this).next(".dropdown-menu");
@@ -66,7 +65,7 @@
 
         // Script botão excluir
         var url = '';
-        $('button[id * = "btn_"]').click(function(){
+        $('button[id*="btn_"]').click(function(){
             url = "/" + $(this).attr('id').split("_")[1];
         });
         // Botão  confirmar
