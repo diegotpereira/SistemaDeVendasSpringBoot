@@ -17,70 +17,71 @@
                     </div>
 
                     <a class="btn btn-primary btn-md" href="/cadastros/produto/consultar" role="button">
-                        <span class="oi oi-spredsheet" title="Cadastro" aria-hidden="true"></span>
+                        <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
                         <span>Consultar Produtos</span>
                     </a>
                 </nav>
                 <br/><br/>
                 
-                <form class="form-horizontal" id="formProd">
+                <form class="form-horizontal"
+                      th:action = "${produto.id == null} ?
+                      @{/cadastros/produto/salvar} :
+                      @{/cadastros/produto/editar}"
+                      th:object = "${produto}"
+                      method="POST">
                     <div class="form-group row">
                         <label for="codigo" class="col-sm-2 control-label">codigo</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtcodigo" placeholder="Digite o código">
+                            <input type="text" class="form-control" id="txtcodigo" placeholder="Digite o código" th:field = "*{codigo}">
                         </div>
 
                         <label for="codigo" class="col-sm-1 control-label">EAN</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="txtean" placeholder="Codigo de Barras">
+                            <input type="text" class="form-control" id="txtean" placeholder="Codigo de Barras" th:field = "*{ean}">
                         </div>
                     </div>
 
-                    <div class="formgroup row">
+                    <div class="form-group row">
                         <label for="nome" class="col-sm-2 control-label">Descrição</label>
                         <div class="col-sm-7">
-                            <input type="text" required class="form-control" id="txtnome" placeholder="Digite o nome">
+                            <input type="text" required class="form-control" id="txtnome" placeholder="Digite a descrição" th:field = "*{descricao}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="endereco" class="col-sm-2 control-label">Unidade</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtunidade" placeholder="unidade">
+                            <input type="text" class="form-control" id="txtunidade" placeholder="unidade" th:field = "*{unidade}">
                         </div>
 
                         <label for="endereco" class="col-sm-2 control-label">Data Entrada</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control" id="txtData">
+                            <input type="date" class="form-control" id="txtData" th:field = "*{dataEntrada}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="endereco" class="col-sm-2 control-label">Grupo</label>
                         <div class="col-sm-2">
-                            <select id="grupo" class="form-control" name="grupo">
+                            <select id="grupo" class="form-control" th:field = "*{grupo}">
                                 <option value="">Grupo</option>
-                                <option value="Perdigao">Perdigao</option>
-                                <option value="Sadia">Sadia</option>
-                                <option value="Seara">Seara</option>
-                                <option value="Friboi">Friboi</option>
+                                <option th:each = "grupo : ${grupos}" th:value = "${grupo}" th:text = "${grupo}"></option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
 
                         <label for="numero" class="col-sm-2 control-label">Sub-grupo</label>
                         <div class="col-sm-2">
-                            <select id="subgrupo" class="form-control" name="subgrupo">
+                            <select id="subGrupo" class="form-control" th:field = "*{subGrupo}">
                                 <option value="">Sub-Grupo</option>
-                                <option value="Perdigao">Perdigao</option>
-                                <option value="Sadia">Sadia</option>
-                                <option value="Seara">Seara</option>
-                                <option value="Friboi">Friboi</option>
+                                <option th:each = "subGrupo : ${subgrupos}" th:value = "${subGrupo}" th:text = "${subGrupo}"></option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
 
                         <label for="fornecedores" class="col-sm-2 control-label">Fornecedor</label>
                         <div class="col-sm-2">
-                            <select id="fornecedores" class="form-control" name="fornecedores">
+                            <select id="fornecedores" class="form-control" th:field ="*{fornecedor}">
                                 <option value="">Fornecedor</option>
                                 <option value="Perdigao">Perdigao</option>
                                 <option value="Sadia">Sadia</option>
@@ -93,25 +94,25 @@
                     <div class="form-group row">
                         <label for="precoVenda" class="col-sm-2 control-label">Preço de Venda</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtprecoVenda" data-mask="#.##0,00">
+                            <input type="text" class="form-control" id="txtprecoVenda" data-mask="#.##0,00" th:field = "*{precoVenda}">
                         </div>
                         <label for="precoCusto" class="col-sm-2 control-label">Preço de Custo</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtprecoCusto" data-mask="#.##0,00">
+                            <input type="text" class="form-control" id="txtprecoCusto" data-mask="#.##0,00" th:field = "*{precoCusto}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="txtestoque" class="col-sm-2 control-label">Quantidade</label>
                         <div class="col-sm-3">
-                            <input type="text" disabled="disabled" class="form-control" id="txtestoque">
+                            <input type="text" disabled="disabled" class="form-control" id="txtestoque" th:field = "*{quantidade}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="telefone" class="col-sm-2 control-label">Imagem do Produto</label>
                         <div>
-                            <input type="file" id="realupload" name="realupload" class="col-sm-2 control-label realupload" accept="image/*" onchange="readURL(this);"/>
+                            <input type="file" id="realupload" name="realupload" class="col-sm-2 control-label realupload" accept="image/*" onchange="readURL(this);" th:field = "*{imagem}" />
                         </div>
 
                         <div class="col-sm-4">
