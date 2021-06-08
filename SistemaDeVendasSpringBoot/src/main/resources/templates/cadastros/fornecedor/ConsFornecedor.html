@@ -41,25 +41,40 @@
                                 </tr>
                             </thead>
 
-                            <tr>
-                                <td>Id</td>
-                                <td>id</td>
-                                <td>nome</td>
-                                <td>cnpj</td>
-                                <td>inscricao</td>
+                            <tr th:each = "f : ${fornecedores}">
+                                <td th:text = "${f.id}">id</td>
+                                <td th:text = "${f.nomeFantasia}">nome</td>
+                                <td th:text = "${f.cnpj}">cnpj</td>
+                                <td th:text = "${f.inscricao}">inscricao</td>
                                 <td>
-                                    <button type="button" class="btn btn-secondary btn-sm" data-container="body" data-toggle="popover" data-placement="top">
+                                    <button type="button" 
+                                            class="btn btn-secondary btn-sm" 
+                                            data-container="body" 
+                                            data-toggle="popover" 
+                                            data-placement="top"
+                                            th:attr = "data-content = ${#strings.concat(
+                                                      f.endereco, ',' ,'nº ',
+                                                      f.numero, ' ','-',
+                                                      f.bairro, ' - ',
+                                                      f.cidade, ', ',
+                                                      f.uf, ', ',
+                                                      f.cep)}">
                                         <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
                                     </button>
                                 </td>
-                                <td>E-mail</td>
-                                <td>Telefone</td>
+                                <td th:text = "${f.email}">E-mail</td>
+                                <td th:text = "${f.telefone}">Telefone</td>
                                 <td colspan="2">
-                                    <a class="btn btn-info btn-sm" role="button">
+                                    <a class="btn btn-info btn-sm" 
+                                       role="button" 
+                                       th:href = "@{/cadastros/fornecedor/editar/{id} (id = ${f.id})}">
                                         <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                                     </a>
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                                    <button type="button" 
+                                            class="btn btn-danger btn-sm" 
+                                            data-toggle="modal" 
+                                            data-target="#myModal" th:id = "${'btn_cadastros/fornecedor/excluir/' + f.id}">
                                         <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
                                     </button>
                                 </td>
