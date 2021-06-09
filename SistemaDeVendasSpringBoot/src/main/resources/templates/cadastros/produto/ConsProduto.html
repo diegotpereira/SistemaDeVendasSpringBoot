@@ -56,12 +56,13 @@
                                     <td th:text = "${p.grupo}">Pereciveis</td>
                                     <td th:text = "${p.subGrupo}">Tipos</td>
                                     <td colspan="2">
-                                        <a class="btn btn-info btn-sm" href="" role="button">
+                                        <a class="btn btn-info btn-sm" th:href = "@{/cadastros/produto/editar/{id} (id = ${p.id})}" role="button">
                                             <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-                                            <button id="" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
-                                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-                                            </button>
                                         </a>
+                                         <button type="button" class="btn btn-danger btn-sm" 
+                                                 data-toggle="modal" data-target="#myModal" th:id = "${'btn_cadastros/produto/excluir/' + p.id}">
+                                            <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -69,6 +70,7 @@
                     </div>
                 </div>
             </div>
+            <div th:replace = "fragments/modal :: modal"></div>
         </section>
     </body>
 </html>

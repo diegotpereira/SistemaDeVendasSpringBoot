@@ -81,4 +81,12 @@ public class ProdutoController {
 		
 		return "redirect:/cadastros/produto/cadastrar";
 	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+		service.excluir(id);
+		attr.addFlashAttribute("sucesso", "Produto excluído com sucesso!.");
+		
+		return "redirect:/cadastros/produto/consultar";
+	}
 }
