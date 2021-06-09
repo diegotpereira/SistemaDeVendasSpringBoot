@@ -56,7 +56,6 @@ public class ProdutoController {
 	@GetMapping("/consultar")
 	public String consultar(ModelMap model) {
 		model.addAttribute("produtos", service.buscarTodos());
-//		model.addAttribute("listaFornecedor", serv.buscarTodos());
 		
 		return "cadastros/produto/ConsProduto";
 	}

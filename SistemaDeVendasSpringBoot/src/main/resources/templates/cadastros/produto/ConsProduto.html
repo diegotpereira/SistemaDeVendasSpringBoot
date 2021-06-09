@@ -43,26 +43,28 @@
                                 </tr>
                             </thead>
 
-                            <tr>
-                                <td>1</td>
-                                <td>Linguiça</td>
-                                <td>Perdigão</td>
-                                <td>R$ 19,99</td>
-                                <td>R$ 9,99</td>
-                                <td>100</td>
-                                <td>21/02/2018</td>
-                                <td>Pereciveis</td>
-                                <td>Laticionios</td>
-                                <td colspan="2">
-                                    <a class="btn btn-info btn-sm" href="" role="button">
-                                        <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-                                        <button id="" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
-                                            <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-                                        </button>
-                                    </a>
-
-                                </td>
-                            </tr>
+                            <tbody>
+                                <tr th:each = "p : ${produtos}">
+                                    <td th:text = "${p.id}">id</td>
+                                    <td th:text = "${p.codigo}">Código</td>
+                                    <td th:text = "${p.fornecedor}">Fornecedor</td>
+                                    <td th:text = "${p.descricao}">Descrição</td>
+                                    <td th:text = "${p.precoVenda}">Preço de Venda</td>
+                                    <td th:text = "${p.precoCusto}">Preço de Custo</td>
+                                    <td>100</td>
+                                    <td th:text = "${p.dataEntrada}">Data Entraada</td>
+                                    <td th:text = "${p.grupo}">Pereciveis</td>
+                                    <td th:text = "${p.subGrupo}">Tipos</td>
+                                    <td colspan="2">
+                                        <a class="btn btn-info btn-sm" href="" role="button">
+                                            <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+                                            <button id="" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
