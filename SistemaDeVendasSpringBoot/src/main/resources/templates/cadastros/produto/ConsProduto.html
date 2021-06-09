@@ -47,7 +47,7 @@
                                 <tr th:each = "p : ${produtos}">
                                     <td th:text = "${p.id}">id</td>
                                     <td th:text = "${p.codigo}">Código</td>
-                                    <td th:text = "${p.fornecedor}">Fornecedor</td>
+                                    <td th:text = "${p.fornecedor.nomeFantasia}">Fornecedor</td>
                                     <td th:text = "${p.descricao}">Descrição</td>
                                     <td th:text = "${p.precoVenda}">Preço de Venda</td>
                                     <td th:text = "${p.precoCusto}">Preço de Custo</td>
@@ -70,7 +70,6 @@
                     </div>
                 </div>
             </div>
-            <div th:replace = "fragments/modal :: modal"></div>
         </section>
     </body>
 </html>
