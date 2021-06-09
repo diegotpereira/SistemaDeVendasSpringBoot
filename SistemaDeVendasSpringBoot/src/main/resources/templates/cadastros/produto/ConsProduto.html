@@ -30,31 +30,29 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Descrição</th>
+                                    <th>Código</th>
                                     <th>Fornecedor</th>
+                                    <th>Descrição</th>
                                     <th>Preço Venda</th>
                                     <th>Preço Custo</th>
-                                    <th>Estoque</th>
                                     <th>Data de Entrada</th>
                                     <th>Grupo</th>
-                                    <th>Sub-Grupo</th>
-                                    <th>Imagem</th>
+                                    <th>Tipo</th>
                                     <th></th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr th:each = "p : ${produtos}">
-                                    <td th:text = "${p.id}">id</td>
-                                    <td th:text = "${p.codigo}">Código</td>
-                                    <td th:text = "${p.fornecedor.nomeFantasia}">Fornecedor</td>
-                                    <td th:text = "${p.descricao}">Descrição</td>
-                                    <td th:text = "${p.precoVenda}">Preço de Venda</td>
-                                    <td th:text = "${p.precoCusto}">Preço de Custo</td>
-                                    <td>100</td>
-                                    <td th:text = "${p.dataEntrada}">Data Entraada</td>
-                                    <td th:text = "${p.grupo}">Pereciveis</td>
-                                    <td th:text = "${p.subGrupo}">Tipos</td>
+                                    <td th:text = "${p.id}"></td>
+                                    <td th:text = "${p.codigo}"></td>
+                                    <td th:text = "${p.fornecedor.nomeFantasia}"></td>
+                                    <td th:text = "${p.descricao}"></td>
+                                    <td th:text = "${p.precoVenda}"></td>
+                                    <td th:text = "${p.precoCusto}"></td>
+                                    <td th:text = "${p.dataEntrada}"></td>
+                                    <td th:text = "${p.grupo}"></td>
+                                    <td th:text = "${p.subGrupo}"></td>
                                     <td colspan="2">
                                         <a class="btn btn-info btn-sm" th:href = "@{/cadastros/produto/editar/{id} (id = ${p.id})}" role="button">
                                             <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
