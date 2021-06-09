@@ -16,6 +16,10 @@
                         </ul>
                     </div>
 
+                    <br/>
+                    <br/>
+                    <div th:replace = "fragments/alert"></div>
+
                     <a class="btn btn-primary btn-md" href="/cadastros/produto/consultar" role="button">
                         <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
                         <span>Consultar Produtos</span>
@@ -122,6 +126,7 @@
                     </div>
 
                     <div align="center" class="form-group">
+                        <input type="hidden" id="id" th:field="*{id}"/>
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
                     
