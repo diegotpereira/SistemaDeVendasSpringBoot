@@ -81,12 +81,12 @@
 
                         <label for="fornecedores" class="col-sm-2 control-label">Fornecedor</label>
                         <div class="col-sm-2">
-                            <select id="fornecedores" class="form-control" th:field ="*{fornecedor}">
+                            <select id="fornecedores" class="form-control" th:field ="*{idFornecedor}">
                                 <option value="">Fornecedor</option>
-                                <option value="Perdigao">Perdigao</option>
-                                <option value="Sadia">Sadia</option>
-                                <option value="Seara">Seara</option>
-                                <option value="Friboi">Friboi</option>
+                                <option th:each = "forn : ${fornecedor}"
+                                        th:value = "${forn.id}"
+                                        th:text = "${forn.nomeFantasia}" >
+                                </option>        
                             </select>
                         </div>
                     </div>
