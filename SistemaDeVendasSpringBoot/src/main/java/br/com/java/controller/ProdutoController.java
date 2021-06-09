@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.java.model.GRUPO;
 import br.com.java.model.Produto;
 import br.com.java.model.SUBGRUPO;
+import br.com.java.service.FornecedorService;
 import br.com.java.service.ProdutoService;
 
 @Controller
@@ -21,6 +22,9 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoService service;
+	
+	@Autowired
+	private FornecedorService serv;
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Produto produto) {
@@ -47,6 +51,7 @@ public class ProdutoController {
 	@GetMapping("/consultar")
 	public String consultar(ModelMap model) {
 		model.addAttribute("produtos", service.buscarTodos());
+		model.addAttribute("fornecedor", serv.buscarTodos());
 		
 		return "cadastros/produto/ConsProduto";
 	}
