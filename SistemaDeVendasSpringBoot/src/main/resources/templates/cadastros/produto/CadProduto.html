@@ -81,7 +81,8 @@
 
                         <label for="fornecedores" class="col-sm-2 control-label">Selecione o Fornecedor</label>
                         <div class="col-sm-2">
-                            <select id = "fornecedor" class="form-control">
+                            <select id = "fornecedor" class="form-control" th:field = "*{fornecedor.id}">
+                                        <option value="">Fornecedor</option>
                                         <option th:each = "fornecedor : ${listaFornecedor}" 
                                                 th:value = "${fornecedor.id}" 
                                                 th:text = "${fornecedor.nomeFantasia}"></option>
