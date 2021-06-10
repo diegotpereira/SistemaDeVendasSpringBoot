@@ -41,7 +41,7 @@
                         <div class="col-sm-2">
                             <select id="produto" class="form-control">
                                 <option value="">Selecione</option>
-                                <option th:each = "p : ${listarProdutos}" 
+                                <option th:each = "p : ${listaProdutos}" 
                                         th:value ="${p.id}"
                                         th:text = "${p.descricao}" ></option>
                             </select>
