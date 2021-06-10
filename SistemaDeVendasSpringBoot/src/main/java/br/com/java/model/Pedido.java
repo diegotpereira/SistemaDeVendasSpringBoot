@@ -1,101 +1,73 @@
 package br.com.java.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "tb_pedidos")
+@Table(name = "tb_pedido")
 public class Pedido extends AbstractEntity<Long>{
 	
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "dataPedido", nullable = false, columnDefinition = "DATE")
-	private LocalDate dataPedido;
-	
-	@Column(name = "formaPagamento", nullable = false, length = 50)
-	@Enumerated(EnumType.STRING)
-	private Pagamento formaPagamento;
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	@Column(name = "precoUnitario", nullable = false, columnDefinition = "DECIMAL(7) DEAFAULT 0.00")
+	public BigDecimal precoUnitario;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal desconto;
+	@Column(name = "precoTotal", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal precoTotal;
 	
-	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal total;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idPedido")
+	private Pedido pedido;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_funcionario")
-	private Funcionario funcionario;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idProduto")
+	private Produto produto;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_cliente")
-	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "pedido")
-	private List<Pedido> listaDeProdutos;
+	@Column(nullable = false)
+	private int quantidade;
 
-	public LocalDate getDataPedido() {
-		return dataPedido;
+	public BigDecimal getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setDataPedido(LocalDate dataPedido) {
-		this.dataPedido = dataPedido;
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
-	public Pagamento getFormaPagamento() {
-		return formaPagamento;
+	public BigDecimal getPrecoTotal() {
+		return precoTotal;
 	}
 
-	public void setFormaPagamento(Pagamento formaPagamento) {
-		this.formaPagamento = formaPagamento;
+	public void setPrecoTotal(BigDecimal precoTotal) {
+		this.precoTotal = precoTotal;
 	}
 
-	public BigDecimal getDesconto() {
-		return desconto;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setDesconto(BigDecimal desconto) {
-		this.desconto = desconto;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
-	public BigDecimal getTotal() {
-		return total;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setTotal(BigDecimal total) {
-		this.total = total;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public List<Pedido> getListaDeProdutos() {
-		return listaDeProdutos;
-	}
-
-	public void setListaDeProdutos(List<Pedido> listaDeProdutos) {
-		this.listaDeProdutos = listaDeProdutos;
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 }
