@@ -1,73 +1,116 @@
 package br.com.java.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "tb_pedido")
-public class Pedido extends AbstractEntity<Long>{
+@Table(name = "tb_venda")
+public class Venda extends AbstractEntity<Long>{
+	
+	private String codigoVenda;
+	
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "dataPedido", nullable = false, columnDefinition = "DATE")
+	private LocalDate dataPedido;
+	
+//	@Column(name = "formaPagamento", nullable = false, length = 50)
+//	@Enumerated(EnumType.STRING)
+//	private Pagamento formaPagamento;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(name = "precoUnitario", nullable = false, columnDefinition = "DECIMAL(7) DEAFAULT 0.00")
-	public BigDecimal precoUnitario;
+	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal desconto;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(name = "precoTotal", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal precoTotal;
+	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal total;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idPedido")
-	private Pedido pedido;
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario")
+	private Funcionario funcionario;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idProduto")
-	private Produto produto;
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
 	
-	@Column(nullable = false)
-	private int quantidade;
-
-	public BigDecimal getPrecoUnitario() {
-		return precoUnitario;
+	@OneToMany(mappedBy = "pedido")
+	private List<Pedido> listaDeProdutos;
+	
+	public String getCodigoVenda() {
+		return codigoVenda;
 	}
 
-	public void setPrecoUnitario(BigDecimal precoUnitario) {
-		this.precoUnitario = precoUnitario;
+	public void setCodigoVenda(String codigoVenda) {
+		this.codigoVenda = codigoVenda;
 	}
 
-	public BigDecimal getPrecoTotal() {
-		return precoTotal;
+	public LocalDate getDataPedido() {
+		return dataPedido;
 	}
 
-	public void setPrecoTotal(BigDecimal precoTotal) {
-		this.precoTotal = precoTotal;
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+//	public Pagamento getFormaPagamento() {
+//		return formaPagamento;
+//	}
+//
+//	public void setFormaPagamento(Pagamento formaPagamento) {
+//		this.formaPagamento = formaPagamento;
+//	}
+
+	public BigDecimal getDesconto() {
+		return desconto;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public BigDecimal getTotal() {
+		return total;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 
-	public int getQuantidade() {
-		return quantidade;
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Pedido> getListaDeProdutos() {
+		return listaDeProdutos;
+	}
+
+	public void setListaDeProdutos(List<Pedido> listaDeProdutos) {
+		this.listaDeProdutos = listaDeProdutos;
 	}
 }
