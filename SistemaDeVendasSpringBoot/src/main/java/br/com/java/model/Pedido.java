@@ -24,7 +24,7 @@ public class Pedido extends AbstractEntity<Long>{
 	private String codigoVenda;
 	
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "dataPedido", nullable = false, columnDefinition = "DATE")
+	@Column(name = "dataPedido", nullable = true, columnDefinition = "DATE")
 	private LocalDate dataPedido;
 	
 //	@Column(name = "formaPagamento", nullable = false, length = 50)
@@ -32,11 +32,11 @@ public class Pedido extends AbstractEntity<Long>{
 //	private Pagamento formaPagamento;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	@Column(nullable = true, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
 	private BigDecimal desconto;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	@Column(nullable = true, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
 	private BigDecimal total;
 	
 	@ManyToOne
@@ -49,6 +49,10 @@ public class Pedido extends AbstractEntity<Long>{
 	
 	@OneToMany(mappedBy = "pedido")
 	private List<ProdutoPedido> listaDeProdutos;
+	
+	@ManyToOne
+	@OneToMany(mappedBy = "idProduto")
+	private Produto produto;
 	
 	public String getCodigoVenda() {
 		return codigoVenda;
@@ -112,5 +116,13 @@ public class Pedido extends AbstractEntity<Long>{
 
 	public void setListaDeProdutos(List<ProdutoPedido> listaDeProdutos) {
 		this.listaDeProdutos = listaDeProdutos;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 }

@@ -1,10 +1,12 @@
 package br.com.java.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,13 +27,13 @@ import br.com.java.service.ProdutoPedidoService;
 public class ProdutoPedidoController {
 
 	@Autowired
-	private ProdutoPedidoService produtoPedidoService;
+	ProdutoPedidoService produtoPedidoService;
 
 	@Autowired
-	private ProdutoService serviceProduto;
+	ProdutoService serviceProduto;
 
 	@Autowired
-	private ClienteService serviceCliente;
+	ClienteService serviceCliente;
 
 	private List<ProdutoPedido> listaProdutosPedido = new ArrayList<>();
 
@@ -40,12 +42,13 @@ public class ProdutoPedidoController {
 	private ProdutoPedido produtoPedido = new ProdutoPedido();
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(ProdutoPedido produtoPedido) {
+	public String cadastrar(ProdutoPedido produtoPedido, Model model) {
+		model.addAttribute("produto", produto);
 		return "produto_pedido/cadastroProdutoPedido";
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(ProdutoPedido produtoPedido, Produto produto, RedirectAttributes attr) {
+	public String salvar(ProdutoPedido produtoPedido, RedirectAttributes attr) {
 		produtoPedidoService.salvar(produtoPedido);
 		attr.addFlashAttribute("sucesso", "Venda cadastrada com sucesso!.");
 
@@ -60,13 +63,13 @@ public class ProdutoPedidoController {
 	}
 
 	@PostMapping("/adicionarProduto")
-	public String adicionarProduto(Produto produto, int quantidade, RedirectAttributes attr) {
-		ProdutoPedido pedidoPedido = new ProdutoPedido();
-
-		pedidoPedido.setProduto(produto);
-		pedidoPedido.setQuantidade(quantidade);
-		listaProdutosPedido.add(pedidoPedido);
-		attr.addFlashAttribute("sucesso", "Produto acidionado com sucesso!.");
+	public String adicionarProduto(Produto produto, BigDecimal precoVenda, int quantidade, RedirectAttributes attr) {
+		ProdutoPedido produtoPedido = new ProdutoPedido();
+		produtoPedido.setProduto(produto);
+		produtoPedido.setPrecoUnitario(precoVenda);
+		produtoPedido.setQuantidade(quantidade);
+		listaProdutosPedido.add(produtoPedido);
+		attr.addFlashAttribute("sucesso", "Produto adicionado com sucesso!.");
 
 		return "redirect:/produtosPedidos/cadastrar";
 	}

@@ -38,7 +38,7 @@
 						<div class="form-group col-md-4">
 							<label for="produto">Produto</label> 
 							<select id="produto"
-								class="form-control" >
+								class="form-control" th:field="*{produto.id}" >
 								<option value="">Selecione</option>
 								<option th:each="p : ${produtos}" th:value="${p.id}"
 									th:text="${p.descricao}"></option>
@@ -47,7 +47,7 @@
 
 						<div class="form-group col-md-6">
 							<label for="quantidade">Quantidade</label> 
-							    <input type="number" class="form-control" id="quantidade"/>
+							    <input type="number" class="form-control" id="quantidade" th:field="*{produtoPedido.quantidade}"/>
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
@@ -60,7 +60,6 @@
 							<thead>
 								<tr>
 									<th>#</th>
-<!-- 									<th>Nome do Produto</th> -->
 									<th>Descrição</th>
 									<th>Preço</th>
 									<th>Quantidade</th>
@@ -68,12 +67,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr >
-									<td ></td>
-<!-- 									<td th:text="${p.produto.nome}"></td> -->
-									<td ></td>
-									<td ></td>
-									<td ></td>
+								<tr th:each="p : ${listaProdutosAdicionados}" >
+									<td th:text="${p.produto.id}"></td>
+									<td th:text="${p.produto.descricao}" ></td>
+									<td th:text="${p.produto.precoVenda}"></td>
+									<td th:text="${p.quantidade}"></td>
 									<td colspan="2">
 										<button
 											

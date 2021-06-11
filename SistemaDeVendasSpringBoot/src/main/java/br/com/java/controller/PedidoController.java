@@ -31,16 +31,17 @@ public class PedidoController {
 	Produto produto = new Produto();
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(ProdutoPedido pedido) {
+	public String cadastrar(Pedido pedido) {
 		return "/pedido/cadastroPedido";
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(Pedido pedido, Produto produto, RedirectAttributes attr) {
+	public String salvar(Pedido pedido, Produto produto, RedirectAttributes attr, ModelMap model) {
+//		model.addAttribute("produto", produto);
 		servicePedido.salvar(pedido);
 		attr.addFlashAttribute("sucesso", "Pedido cadastrado com sucesso!.");
 
-		return "redirect:/cadastros/venda/cadastrar";
+		return "redirect:/pedidos/cadastrar";
 	}
 
 	@GetMapping("/consultar")
@@ -73,7 +74,7 @@ public class PedidoController {
 	}
 	
 	// Lista de Produtos
-	@ModelAttribute("listarProdutos")
+	@ModelAttribute("produtos")
 	public List<Produto> listaDeProdutos() {
 
 		return serviceProduto.buscarTodos();

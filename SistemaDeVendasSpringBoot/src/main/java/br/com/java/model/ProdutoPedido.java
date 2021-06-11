@@ -30,7 +30,7 @@ public class ProdutoPedido extends AbstractEntity<Long>{
 	
 	@Column(nullable = false)
 	private int quantidade;
-
+	
 	public BigDecimal getPrecoUnitario() {
 		return precoUnitario;
 	}

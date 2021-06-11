@@ -1,6 +1,11 @@
 package br.com.java.model;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.*;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
@@ -14,14 +19,25 @@ public class Produto  extends AbstractEntity<Long>{
 	private String dataEntrada;
 	private String grupo;
 	private String subGrupo;
-	private String precoVenda;
-	private String precoCusto;
+//	private String precoVenda;
+//	private String precoCusto;
 	private String imagem;
 //	private String quantidade;
+	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	@Column(name="preco_custo", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal precoCusto;
+	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	@Column(name="preco_venda", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal precoVenda;
 	
 	@ManyToOne
 	@JoinColumn(name = "idFornecedor")
 	private Fornecedor fornecedor;
+	
+	@OneToMany(mappedBy = "produto")
+	List<ProdutoPedido> listaProdutosPedidos;
 
 	public String getCodigo() {
 		return codigo;
@@ -79,21 +95,21 @@ public class Produto  extends AbstractEntity<Long>{
 		this.subGrupo = subGrupo;
 	}
 
-	public String getPrecoVenda() {
-		return precoVenda;
-	}
-
-	public void setPrecoVenda(String precoVenda) {
-		this.precoVenda = precoVenda;
-	}
-
-	public String getPrecoCusto() {
-		return precoCusto;
-	}
-
-	public void setPrecoCusto(String precoCusto) {
-		this.precoCusto = precoCusto;
-	}
+//	public String getPrecoVenda() {
+//		return precoVenda;
+//	}
+//
+//	public void setPrecoVenda(String precoVenda) {
+//		this.precoVenda = precoVenda;
+//	}
+//
+//	public String getPrecoCusto() {
+//		return precoCusto;
+//	}
+//
+//	public void setPrecoCusto(String precoCusto) {
+//		this.precoCusto = precoCusto;
+//	}
 
 	public String getImagem() {
 		return imagem;
@@ -110,6 +126,32 @@ public class Produto  extends AbstractEntity<Long>{
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+
+	public List<ProdutoPedido> getListaProdutosPedidos() {
+		return listaProdutosPedidos;
+	}
+
+	public void setListaProdutosPedidos(List<ProdutoPedido> listaProdutosPedidos) {
+		this.listaProdutosPedidos = listaProdutosPedidos;
+	}
+
+	public BigDecimal getPrecoCusto() {
+		return precoCusto;
+	}
+
+	public void setPrecoCusto(BigDecimal precoCusto) {
+		this.precoCusto = precoCusto;
+	}
+
+	public BigDecimal getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(BigDecimal precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+	
+	
 
 //	public String getQuantidade() {
 //		return quantidade;

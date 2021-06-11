@@ -29,12 +29,27 @@
                     <div class="form-group row">
                     <label for="produto" class="col-sm-2 control-label">Produto</label>
                         <div class="col-sm-2">
-                            <select id="produto" class="form-control" >
+                            <select id="produto" class="form-control" th:field="*{produto}" >
                                 <option value="">Selecione</option>
-                                <option th:each = "p : ${listarProdutos}" 
+                                <option th:each = "p : ${produtos}" 
                                         th:value ="${p.id}"
                                         th:text = "${p.descricao}" ></option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for = "precoVenda" class="col-sm-2 control-label">Preço de venda</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txtprecoVenda" data-mask = "#.##0,00" th:field = "*{precoVenda}">
+                        </div>
+                        <label for="precoCusto" class="col-sm-2 control-label">Preço de Custo</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="txtprecoCusto" data-mask="#.##0,00" th:field = "*{precoCusto}">
+                        </div>
+                        <label for="dataEntrada" class="col-sm-2 control-label">Data do Pedido</label>
+                        <div class="col-sm-3">
+                            <input type="date" class="form-control" id="txtData" th:field = "*{dataPedido}">
                         </div>
                     </div>
                     <input type="hidden" id="id" />
