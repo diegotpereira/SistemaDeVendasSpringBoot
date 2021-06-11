@@ -19,33 +19,35 @@
 	            </a>
 	        </nav>
 			<div class="container" id="cadastro">
-				<div class="form-row">
+				<div class="form-group row">
 					<div class="form-group col-md-4">
 						<label for="cliente">Cliente</label> 
 						<select id="cliente"
-							class="form-control" th:field="*{listarClientes}">
+							class="form-control" th:field="*{Clientes}">
 							<option value="">Selecione</option>
-							<option th:each="c : ${listarClientes}" th:value="${c.id}"
+							<option th:each="c : ${Clientes}" th:value="${c.id}"
 								th:text="${c.nome}"></option>
 						</select>
 					</div>
 				</div>
 					
 				<div th:replace="fragments/alert"></div>
-				<form method="POST">
-					<div class="form-row">
+				<form th:action ="@{/produtosPedidos/adicionarProduto}"
+				      th:onject = "${produtoPedido}" method="POST">
+					<div class="form-group row">
 						<div class="form-group col-md-4">
-							<label for="produto">Produto</label> <select id="produto"
+							<label for="produto">Produto</label> 
+							<select id="produto"
 								class="form-control" >
 								<option value="">Selecione</option>
-								<option th:each="p : ${listarProdutos}" th:value="${p.id}"
+								<option th:each="p : ${produtos}" th:value="${p.id}"
 									th:text="${p.descricao}"></option>
 							</select>
 						</div>
 
 						<div class="form-group col-md-6">
-							<label for="quantidade">Quantidade</label> <input type="number"
-								class="form-control" id="quandidade"  />
+							<label for="quantidade">Quantidade</label> 
+							    <input type="number" class="form-control" id="quantidade"/>
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
@@ -58,7 +60,7 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>Nome do Produto</th>
+<!-- 									<th>Nome do Produto</th> -->
 									<th>Descrição</th>
 									<th>Preço</th>
 									<th>Quantidade</th>
@@ -67,11 +69,11 @@
 							</thead>
 							<tbody>
 								<tr >
-									<td >id</td>
-									<td >nome</td>
-									<td >descrição</td>
-									<td >preço venda</td>
-									<td >quantidade</td>
+									<td ></td>
+<!-- 									<td th:text="${p.produto.nome}"></td> -->
+									<td ></td>
+									<td ></td>
+									<td ></td>
 									<td colspan="2">
 										<button
 											

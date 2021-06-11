@@ -24,24 +24,14 @@
                 <br/>
                 <br/>
                 <div th:replace="fragments/alert"></div>
-                <form method="POST">
-                   <div class="form-group row">
-                    <label for="produto" class="col-sm-2 control-label">Clientes</label>
-                        <div class="col-sm-2">
-                            <select id="cliente" class="form-control">
-                                <option value="">Selecione</option>
-                                <option th:each = "c : ${listarClientes}" 
-                                        th:value ="${c.id}"
-                                        th:text = "${c.nome}" ></option>
-                            </select>
-                        </div>
-                    </div>
+                <form th:action = "@{/pedidos/salvar}"
+                      th:object = "${pedido}" method="POST">
                     <div class="form-group row">
                     <label for="produto" class="col-sm-2 control-label">Produto</label>
                         <div class="col-sm-2">
-                            <select id="produto" class="form-control">
+                            <select id="produto" class="form-control" >
                                 <option value="">Selecione</option>
-                                <option th:each = "p : ${listaProdutos}" 
+                                <option th:each = "p : ${listarProdutos}" 
                                         th:value ="${p.id}"
                                         th:text = "${p.descricao}" ></option>
                             </select>

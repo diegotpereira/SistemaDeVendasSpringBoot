@@ -9,11 +9,11 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "tb_pedido")
-public class Pedido extends AbstractEntity<Long>{
+@Table(name = "tb_produtos_pedido")
+public class ProdutoPedido extends AbstractEntity<Long>{
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(name = "precoUnitario", nullable = false, columnDefinition = "DECIMAL(7) DEAFAULT 0.00")
+	@Column(name = "precoUnitario", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
 	public BigDecimal precoUnitario;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
@@ -21,11 +21,11 @@ public class Pedido extends AbstractEntity<Long>{
 	private BigDecimal precoTotal;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idPedido")
+	@JoinColumn(name = "pedido_id_fk")
 	private Pedido pedido;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idProduto")
+	@JoinColumn(name = "produto_id_fk")
 	private Produto produto;
 	
 	@Column(nullable = false)

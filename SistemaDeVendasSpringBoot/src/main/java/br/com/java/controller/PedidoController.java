@@ -1,6 +1,5 @@
 package br.com.java.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.java.model.Cliente;
 import br.com.java.model.Pedido;
+import br.com.java.model.ProdutoPedido;
 import br.com.java.model.Produto;
-import br.com.java.service.ClienteService;
 import br.com.java.service.PedidoService;
 import br.com.java.service.ProdutoService;
 
 @Controller
-@RequestMapping("/cadastros/pedido")
+@RequestMapping("/pedidos")
 public class PedidoController {
 
 	@Autowired
@@ -30,18 +28,11 @@ public class PedidoController {
 	@Autowired
 	ProdutoService serviceProduto;
 
-	@Autowired
-	ClienteService serviceCliente;
-
 	Produto produto = new Produto();
 
-	private List<Pedido> listaDePedidos = new ArrayList<>();
-
-	private Pedido pedido = new Pedido();
-
 	@GetMapping("/cadastrar")
-	public String cadastrar(Pedido pedido) {
-		return "/cadastros/pedido/CadPedido";
+	public String cadastrar(ProdutoPedido pedido) {
+		return "/pedido/cadastroPedido";
 	}
 
 	@PostMapping("/salvar")
@@ -49,21 +40,21 @@ public class PedidoController {
 		servicePedido.salvar(pedido);
 		attr.addFlashAttribute("sucesso", "Pedido cadastrado com sucesso!.");
 
-		return "redirect:/cadastros/pedido/cadastrar";
+		return "redirect:/cadastros/venda/cadastrar";
 	}
 
 	@GetMapping("/consultar")
 	public String consultar(ModelMap model) {
 		model.addAttribute("pedidos", servicePedido.buscarTodos());
 
-		return "/cadastros/pedido/ConPedido";
+		return "/pedido/lista";
 	}
 
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("pedido", servicePedido.buscarPorId(id));
+		model.addAttribute("pedidos", servicePedido.buscarPorId(id));
 
-		return "cadastros/pedido/CadPedido";
+		return "/pedido/cadastroPedido";
 	}
 
 	@PostMapping("/editar")
@@ -71,55 +62,21 @@ public class PedidoController {
 		servicePedido.editar(pedido);
 		attr.addFlashAttribute("sucesso", "Pedido atualizado com sucesso");
 
-		return "redirect:/cadastros/pedido/cadastrar";
+		return "redirect:/pedidos/consultar";
 	}
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 		servicePedido.excluir(id);
 
-		return "redirect:/cadastros/pedido/consultar";
-	}
-
-	@PostMapping("/adicionarProduto")
-	public String adicionarProduto(Produto produto, int quantidade, RedirectAttributes attr) {
-		Pedido pedido = new Pedido();
-
-		pedido.setProduto(produto);
-		pedido.setQuantidade(quantidade);
-		listaDePedidos.add(pedido);
-		attr.addFlashAttribute("sucesso", "Produto acidionado com sucesso!.");
-
-		return "redirect:/cadastros/pedido/cadastrar";
-	}
-
-	@GetMapping("/removerProduto/{id}")
-	public String removerProduto(@PathVariable("id") Long id, RedirectAttributes attr) {
-		listaDePedidos.remove(pedido);
-		attr.addFlashAttribute("sucesso", "Produto removido com sucesso!.");
-
-		return "redirect:/cadastros/pedido/cadastrar";
+		return "redirect:/pedidos/consultar";
 	}
 	
 	// Lista de Produtos
-	@ModelAttribute("listaProdutos")
+	@ModelAttribute("listarProdutos")
 	public List<Produto> listaDeProdutos() {
 
 		return serviceProduto.buscarTodos();
-	}
-	
-	// Lista de Clientes
-	@ModelAttribute("listaDeClientes")
-	public List<Cliente> listaDeClientes(){
-		
-		return serviceCliente.buscarTodos();
-	}
-	
-	// Lista de Produtos Adicionados
-	@ModelAttribute("listaProdutosAdicionados")
-	public List<Pedido> listaDeProdutosPedidos(){
-		
-		return listaDePedidos;
 	}
 
 	public Produto getProduto() {
@@ -128,13 +85,5 @@ public class PedidoController {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
-	}
-
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
 	}
 }

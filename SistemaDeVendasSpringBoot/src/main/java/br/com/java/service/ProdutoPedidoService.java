@@ -2,17 +2,17 @@ package br.com.java.service;
 
 import java.util.List;
 
-import br.com.java.model.Pedido;
+import br.com.java.model.ProdutoPedido;
 
-public interface PedidoService {
+public interface ProdutoPedidoService {
 	
-	void salvar(Pedido pedido);
+	void salvar(ProdutoPedido produtoPedido);
 	
-	void editar(Pedido pedido);
+	void editar(ProdutoPedido produtoPedido);
 	
 	void excluir(Long id);
 	
-	Pedido buscarPorId(Long id);
+	ProdutoPedido buscarPorId(Long id);
 	
-	List<Pedido> buscarTodos();
+	List<ProdutoPedido> buscarTodos();
 }

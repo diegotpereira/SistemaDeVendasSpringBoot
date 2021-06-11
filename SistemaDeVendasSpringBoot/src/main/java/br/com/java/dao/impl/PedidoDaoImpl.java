@@ -3,10 +3,10 @@ package br.com.java.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import br.com.java.dao.DaoGenerico;
-import br.com.java.dao.VendaDao;
-import br.com.java.model.Venda;
+import br.com.java.dao.PedidoDao;
+import br.com.java.model.Pedido;
 
 @Repository
-public class VendaDaoImpl extends DaoGenerico<Venda, Long> implements VendaDao {
+public class PedidoDaoImpl extends DaoGenerico<Pedido, Long> implements PedidoDao {
 
 }

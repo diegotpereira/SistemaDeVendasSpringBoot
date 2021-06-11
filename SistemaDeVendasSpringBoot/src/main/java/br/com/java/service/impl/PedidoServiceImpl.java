@@ -6,27 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.java.dao.VendaDao;
-import br.com.java.model.Venda;
-import br.com.java.service.VendaService;
+import br.com.java.dao.PedidoDao;
+import br.com.java.model.Pedido;
+import br.com.java.service.PedidoService;
 
 @Service
 @Transactional(readOnly = false)
-public class VendaServiceImpl implements VendaService{
+public class PedidoServiceImpl implements PedidoService{
 	
 	@Autowired
-	private VendaDao dao;
+	private PedidoDao dao;
 
 	@Override
-	public void salvar(Venda venda) {
+	public void salvar(Pedido pedido) {
 		// TODO Auto-generated method stub
-		dao.save(venda);
+		dao.save(pedido);
 	}
 
 	@Override
-	public void editar(Venda venda) {
+	public void editar(Pedido pedido) {
 		// TODO Auto-generated method stub
-		dao.update(venda);
+		dao.update(pedido);
 	}
 
 	@Override
@@ -37,14 +37,14 @@ public class VendaServiceImpl implements VendaService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Venda buscarPorId(Long id) {
+	public Pedido buscarPorId(Long id) {
 		// TODO Auto-generated method stub
 		return dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Venda> buscarTodos() {
+	public List<Pedido> buscarTodos() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}

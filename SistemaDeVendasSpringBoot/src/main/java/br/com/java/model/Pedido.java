@@ -18,8 +18,8 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "tb_venda")
-public class Venda extends AbstractEntity<Long>{
+@Table(name = "tb_pedidos")
+public class Pedido extends AbstractEntity<Long>{
 	
 	private String codigoVenda;
 	
@@ -40,15 +40,15 @@ public class Venda extends AbstractEntity<Long>{
 	private BigDecimal total;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_funcionario")
+	@JoinColumn(name = "id_funcionario_fk")
 	private Funcionario funcionario;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cliente")
+	@JoinColumn(name = "id_cliente_fk")
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "pedido")
-	private List<Pedido> listaDeProdutos;
+	private List<ProdutoPedido> listaDeProdutos;
 	
 	public String getCodigoVenda() {
 		return codigoVenda;
@@ -106,11 +106,11 @@ public class Venda extends AbstractEntity<Long>{
 		this.cliente = cliente;
 	}
 
-	public List<Pedido> getListaDeProdutos() {
+	public List<ProdutoPedido> getListaDeProdutos() {
 		return listaDeProdutos;
 	}
 
-	public void setListaDeProdutos(List<Pedido> listaDeProdutos) {
+	public void setListaDeProdutos(List<ProdutoPedido> listaDeProdutos) {
 		this.listaDeProdutos = listaDeProdutos;
 	}
 }

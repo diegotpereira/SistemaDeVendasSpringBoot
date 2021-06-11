@@ -2,17 +2,17 @@ package br.com.java.dao;
 
 import java.util.List;
 
-import br.com.java.model.Venda;
+import br.com.java.model.Pedido;
 
-public interface VendaDao {
+public interface PedidoDao {
 	
-	void save(Venda venda);
+	void save(Pedido pedido);
 	
-	void update(Venda venda);
+	void update(Pedido pedido);
 	
 	void delete(Long id);
 	
-	Venda findById(Long id);
+	Pedido findById(Long id);
 	
-	List<Venda> findAll();
+	List<Pedido> findAll();
 }
