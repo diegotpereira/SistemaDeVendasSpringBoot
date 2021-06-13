@@ -1,4 +1,4 @@
-package br.com.java.model;
+	package br.com.java.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,8 +21,41 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @Table(name = "tb_pedidos")
 public class Pedido extends AbstractEntity<Long>{
 	
+	// Código da Venda
 	private String codigoVenda;
-	
+
+	// Entidade Funcionario
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario_fk")
+	private Funcionario funcionario;
+
+	// Entidade Cliente
+	@ManyToOne
+	@JoinColumn(name = "id_cliente_fk")
+	private Cliente cliente;
+
+	// Entidade Produto
+	@ManyToOne
+	@OneToMany(mappedBy = "idProduto")
+	private Produto produto;
+
+	// Preço de Custo
+	@Column(name = "precoCusto", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	public BigDecimal precoCusto;
+
+
+	// Preço de Venda
+	@NumberFormat(style = Style.CURRENCY, pattern = "#.##0,00")
+	@Column(name="precoVenda", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal precoVenda;
+
+	// Valor de Desconto
+	@NumberFormat(style = Style.CURRENCY, pattern = "#.##0,00")
+	@Column(nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
+	private BigDecimal desconto;
+
+	// Data do Pedido
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "dataPedido", nullable = true, columnDefinition = "DATE")
 	private LocalDate dataPedido;
@@ -33,65 +66,18 @@ public class Pedido extends AbstractEntity<Long>{
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = true, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal desconto;
+	private BigDecimal valorTotal;
 	
-	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(nullable = true, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal total;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_funcionario_fk")
-	private Funcionario funcionario;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_cliente_fk")
-	private Cliente cliente;
-	
+	// Lista de Produtos
 	@OneToMany(mappedBy = "pedido")
 	private List<ProdutoPedido> listaDeProdutos;
-	
-	@ManyToOne
-	@OneToMany(mappedBy = "idProduto")
-	private Produto produto;
-	
+
 	public String getCodigoVenda() {
 		return codigoVenda;
 	}
 
 	public void setCodigoVenda(String codigoVenda) {
 		this.codigoVenda = codigoVenda;
-	}
-
-	public LocalDate getDataPedido() {
-		return dataPedido;
-	}
-
-	public void setDataPedido(LocalDate dataPedido) {
-		this.dataPedido = dataPedido;
-	}
-
-//	public Pagamento getFormaPagamento() {
-//		return formaPagamento;
-//	}
-//
-//	public void setFormaPagamento(Pagamento formaPagamento) {
-//		this.formaPagamento = formaPagamento;
-//	}
-
-	public BigDecimal getDesconto() {
-		return desconto;
-	}
-
-	public void setDesconto(BigDecimal desconto) {
-		this.desconto = desconto;
-	}
-
-	public BigDecimal getTotal() {
-		return total;
-	}
-
-	public void setTotal(BigDecimal total) {
-		this.total = total;
 	}
 
 	public Funcionario getFuncionario() {
@@ -110,6 +96,55 @@ public class Pedido extends AbstractEntity<Long>{
 		this.cliente = cliente;
 	}
 
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public BigDecimal getPrecoCusto() {
+		return precoCusto;
+	}
+
+	public void setPrecoCusto(BigDecimal precoCusto) {
+		this.precoCusto = precoCusto;
+	}
+
+	public BigDecimal getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(BigDecimal precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+
+	public BigDecimal getDesconto() {
+		return desconto;
+	}
+
+	public void setDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
+	}
+
+	public LocalDate getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+	
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
 	public List<ProdutoPedido> getListaDeProdutos() {
 		return listaDeProdutos;
 	}
@@ -118,11 +153,4 @@ public class Pedido extends AbstractEntity<Long>{
 		this.listaDeProdutos = listaDeProdutos;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
 }

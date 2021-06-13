@@ -12,8 +12,18 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @Table(name = "tb_produto")
 public class Produto  extends AbstractEntity<Long>{
 	
+	// Código do produto
 	private String codigo;
+
+	// Cógigo de barras
 	private String ean;
+
+	// Entidade Fornecedor
+	@ManyToOne
+	@JoinColumn(name = "idFornecedor")
+	private Fornecedor fornecedor;
+
+
 	private String descricao;
 	private String unidade;
 	private String dataEntrada;
@@ -32,9 +42,7 @@ public class Produto  extends AbstractEntity<Long>{
 	@Column(name="preco_venda", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
 	private BigDecimal precoVenda;
 	
-	@ManyToOne
-	@JoinColumn(name = "idFornecedor")
-	private Fornecedor fornecedor;
+
 	
 	@OneToMany(mappedBy = "produto")
 	List<ProdutoPedido> listaProdutosPedidos;

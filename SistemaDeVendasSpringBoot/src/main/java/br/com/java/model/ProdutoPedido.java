@@ -12,21 +12,24 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @Table(name = "tb_produtos_pedido")
 public class ProdutoPedido extends AbstractEntity<Long>{
 	
+	// Entidade Produto
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "produto_id_fk")
+	private Produto produto;
+	
+	// Entidade Pedido
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pedido_id_fk")
+	private Pedido pedido;
+	
+	// Preço por Unidade
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(name = "precoUnitario", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
 	public BigDecimal precoUnitario;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(name = "precoTotal", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal precoTotal;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pedido_id_fk")
-	private Pedido pedido;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "produto_id_fk")
-	private Produto produto;
+	private BigDecimal precoTotal;	
 	
 	@Column(nullable = false)
 	private int quantidade;
