@@ -23,34 +23,50 @@
 					<div class="form-group col-md-4">
 						<label for="cliente">Cliente</label> 
 						<select id="cliente"
-							class="form-control" th:field="*{Clientes}">
+							class="form-control" th:field="*{clientes}">
 							<option value="">Selecione</option>
-							<option th:each="c : ${Clientes}" th:value="${c.id}"
+							<option th:each="c : ${clientes}" th:value="${c.id}"
 								th:text="${c.nome}"></option>
 						</select>
 					</div>
 				</div>
 					
 				<div th:replace="fragments/alert"></div>
-				<form th:action ="@{/produtosPedidos/adicionarProduto}"
-				      th:onject = "${produtoPedido}" method="POST">
+				<form th:action ="${produto.id == null} ?
+				                  @{/produtosPedidos/salvar} :
+				                  @{/produtosPedidos/adicionarProduto}"
+				      th:object = "${produtoPedido}" method="POST">
 					<div class="form-group row">
 						<div class="form-group col-md-4">
 							<label for="produto">Produto</label> 
 							<select id="produto"
-								class="form-control" th:field="*{produto.id}" >
+								class="form-control" th:field="*{produto}" >
 								<option value="">Selecione</option>
 								<option th:each="p : ${produtos}" th:value="${p.id}"
 									th:text="${p.descricao}"></option>
 							</select>
 						</div>
+						
+						<div class="form-group col-sm-2">
+								<label for="precoUnitario">Valor Unitário </label>
+								<input type="text" class="form-control" id="precoUnitario" th:field = "*{precoUnitario}" />
+								<div class="invalid-feedback"></div>
+						</div>
+						
+						<div class="form-group col-sm-2">
+								<label for="precoTotal">Valor Total </label>
+								<input type="text" class="form-control" id="precoTotal" th:field = "*{precoTotal}" />
+								<div class="invalid-feedback"></div>
+						</div>
+						
 
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-2">
 							<label for="quantidade">Quantidade</label> 
-							    <input type="number" class="form-control" id="quantidade" th:field="*{produtoPedido.quantidade}"/>
+							    <input type="number" class="form-control" id="quantidade" th:field="*{quantidade}"/>
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
+					<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 					<button type="submit" class="btn btn-primary btn-sm">Adicionar</button>
 					<br />
 					<br />
@@ -74,7 +90,7 @@
 									<td th:text="${p.quantidade}"></td>
 									<td colspan="2">
 										<button
-											
+											th:id="${#strings.concat('btn_produtosPedidos/removerProduto/', p.produto.id) }"
 											type="button" class="btn btn-danger btn-sm"
 											data-toggle="modal" data-target="#myModal">
 											<span class="oi oi-circle-x" title="Remover"

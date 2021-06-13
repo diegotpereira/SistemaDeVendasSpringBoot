@@ -2,6 +2,19 @@
 <html layout:decorate="~{layout}">
     <head>
         <meta charset="UTF-8">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
+        
+        
+        <script>
+	        function check(e) {
+	            document.getElementById("txtprecoVenda").value = e.target.value
+	            document.getElementById("txtprecoCusto").value = e.target.value
+	        }
+        </script>
+          
+       
+        
     </head>
     <body>
         <section class="layout-content" layout:fragment="corpo">
@@ -12,49 +25,97 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
                             
-                                <span class="tituloForm">Venda</span>
+                                <span class="tituloForm">Detalhes do Produtos</span>
                             </li>
                         </ul>
                     </div>
-                    <a class="btn btn-primary btn-md" href="/cadastros/cliente/consultar" role="button">
+                    <a class="btn btn-primary btn-md" href="/produtosPedidos/cadastrar" role="button">
                         <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-                        <span>Listar Pedidos</span>
+                        <span>Efetuar Venda</span>
                     </a>
                 </nav>
                 <br/>
                 <br/>
-                <div th:replace="fragments/alert"></div>
-                <form th:action = "@{/pedidos/salvar}"
-                      th:object = "${pedido}" method="POST">
-                    <div class="form-group row">
-                    <label for="produto" class="col-sm-2 control-label">Produto</label>
-                        <div class="col-sm-2">
-                            <select id="produto" class="form-control" th:field="*{produto}" >
-                                <option value="">Selecione</option>
-                                <option th:each = "p : ${produtos}" 
-                                        th:value ="${p.id}"
-                                        th:text = "${p.descricao}" ></option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for = "precoVenda" class="col-sm-2 control-label">Preço de venda</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtprecoVenda" data-mask = "#.##0,00" th:field = "*{precoVenda}">
-                        </div>
-                        <label for="precoCusto" class="col-sm-2 control-label">Preço de Custo</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtprecoCusto" data-mask="#.##0,00" th:field = "*{precoCusto}">
-                        </div>
-                        <label for="dataEntrada" class="col-sm-2 control-label">Data do Pedido</label>
-                        <div class="col-sm-3">
-                            <input type="date" class="form-control" id="txtData" th:field = "*{dataPedido}">
-                        </div>
-                    </div>
-                    <input type="hidden" id="id" />
-                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-                </form>
+                <div class = "container" id = "cadastro">
+                     <div th:replace="fragments/alert"></div>
+		                <form class="form-horizontal"
+		                      th:action = "@{/pedidos/salvar}"
+		                      th:object="${pedido}" method="POST">
+		                    <div class="form-group row">
+		                        <label for="produto" class="col-sm-2 control-label">Produto</label>
+		                        <div class="col-sm-3">
+		                            <select id="idProduto" class="form-control" th:field="*{produto}" onChange="check(event);">
+		                                <option value="">Selecione</option>
+		                                <option th:each = "p : ${produtos}" 
+		                                        th:value="${p.id}" th:text="${p.descricao}"></option>        
+		<!--                                         th:value ="${p.precoVenda} + '~' + ${p.precoCusto}" -->
+		<!--                                         th:selected="${p.id}" -->
+		<!--                                         th:text = "${p.descricao}" ></option> -->
+		                            </select>
+		                        </div>
+		                    </div>
+		
+		<!--                     <div class="form-group row"> -->
+		<!--                         <label for = "cliente" class="col-sm-2 control-label">Nome do Cliente</label> -->
+		<!--                         <div class="col-sm-3"> -->
+		<!--                             <select id="cliente" class="form-control" th:field="*{cliente}" > -->
+		<!--                                 <option value="">Selecione</option> -->
+		<!--                                 <option th:each = "c : ${clientes}"  -->
+		<!--                                         th:value ="${c.id}" -->
+		<!--                                         th:text = "${c.nome}" ></option> -->
+		<!--                             </select> -->
+		<!--                         </div> -->
+		<!--                     </div> -->
+		
+		                    <div class="form-group row">
+		                        <label for = "precoVenda" class="col-sm-2 control-label">Preço de venda</label>
+		                        <div class="col-sm-3">
+		                            <input type="text" class="form-control" name = "txtprecoVenda" id="txtprecoVenda" data-mask = "#.##0,00" th:field = "*{precoVenda}">
+		                        </div>
+		                    </div>
+		
+		                    <div class="form-group row">
+		                        <label for="precoCusto" class="col-sm-2 control-label">Preço de Custo</label>
+		                        <div class="col-sm-3">
+		                            <input type="text" class="form-control" id="txtprecoCusto" data-mask="#.##0,00" th:field = "*{precoCusto}" >
+		                        </div>
+		                    </div>
+		
+		<!--                     <div class="form-group row"> -->
+		<!--                         <label for="dataEntrada" class="col-sm-2 control-label">Data do Pedido</label> -->
+		<!--                         <div class="col-sm-3"> -->
+		<!--                             <input type="date" class="form-control" id="txtData" th:field = "*{dataPedido}"> -->
+		<!--                         </div> -->
+		<!--                     </div> -->
+		
+		                    <div class="form-group row">
+		                        <label for="desconto" class="col-sm-2 control-label">Desconto</label>
+		                        <div class="col-sm-3">
+		                            <input type="text" class="form-control" id="txtDesconto" th:field = "*{desconto}">
+		                        </div>
+		                    </div>
+		
+		<!--                     <div class="form-group row"> -->
+		<!--                         <label for="valorTotal" class="col-sm-2 control-label">Valor Total</label> -->
+		<!--                         <div class="col-sm-3"> -->
+		<!--                             <input type="text" class="form-control" id="txtValorTotal" th:field = "*{valorTotal}"> -->
+		<!--                         </div> -->
+		<!--                     </div> -->
+		                    
+		<!--                     <div class="form-group row"> -->
+		<!--                       <label for="imagem" class="col-sm-3 control-label">Imagem do Produto</label> -->
+		<!--                       <div> -->
+		<!--                           <input type="file" id="realupload" name="realupload" class="col-sm-2 control-label realupload" accept="image/*" onchange="readURL(this);" th:field = "*{imagem}" /> -->
+		<!--                       </div> -->
+		
+		<!--                       <div class="col-sm-4"> -->
+		<!--                           <img src="" class="col-sm-6 control-label" id="blah"/> -->
+		<!--                       </div> -->
+		<!--                   </div> -->
+		                    <input type="hidden" id="id" th:field="*{id}"/>
+		                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+		                </form>
+		            </div>
                 </div>
         </section>
     </body>
