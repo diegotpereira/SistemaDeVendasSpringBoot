@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.java.model.Cliente;
 import br.com.java.model.Pedido;
 import br.com.java.model.ProdutoPedido;
 import br.com.java.model.Produto;
+import br.com.java.service.ClienteService;
 import br.com.java.service.PedidoService;
 import br.com.java.service.ProdutoService;
 
@@ -27,6 +30,9 @@ public class PedidoController {
 
 	@Autowired
 	ProdutoService serviceProduto;
+	
+	@Autowired
+	ClienteService serviceCliente;
 
 	Produto produto = new Produto();
 
@@ -47,7 +53,7 @@ public class PedidoController {
 	@GetMapping("/consultar")
 	public String consultar(ModelMap model) {
 		model.addAttribute("pedidos", servicePedido.buscarTodos());
-
+		
 		return "/pedido/lista";
 	}
 
@@ -65,6 +71,13 @@ public class PedidoController {
 
 		return "redirect:/pedidos/consultar";
 	}
+	
+	@GetMapping("/buscar/{id}")
+	public String buscarDados(@PathVariable("id")Long id, ModelMap model) {
+		model.addAttribute("buscarDados", serviceProduto.buscarPorId(id));
+		
+		return "buscarDados";
+	}
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
@@ -80,6 +93,12 @@ public class PedidoController {
 		return serviceProduto.buscarTodos();
 	}
 
+	// Lista de Clientes
+	@ModelAttribute("clientes")
+	public List<Cliente> listaDeClientes() {
+		return serviceCliente.buscarTodos();
+	}
+
 	public Produto getProduto() {
 		return produto;
 	}
@@ -87,4 +106,5 @@ public class PedidoController {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+	
 }

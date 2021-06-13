@@ -63,10 +63,9 @@ public class ProdutoPedidoController {
 	}
 
 	@PostMapping("/adicionarProduto")
-	public String adicionarProduto(Produto produto, BigDecimal precoVenda, int quantidade, RedirectAttributes attr) {
+	public String adicionarProduto(Produto produto, int quantidade, RedirectAttributes attr) {
 		ProdutoPedido produtoPedido = new ProdutoPedido();
 		produtoPedido.setProduto(produto);
-		produtoPedido.setPrecoUnitario(precoVenda);
 		produtoPedido.setQuantidade(quantidade);
 		listaProdutosPedido.add(produtoPedido);
 		attr.addFlashAttribute("sucesso", "Produto adicionado com sucesso!.");
@@ -101,7 +100,7 @@ public class ProdutoPedidoController {
 		listaProdutosPedido.remove(produtoPedido);
 		attr.addFlashAttribute("sucesso", "Produto removido com sucesso!.");
 
-		return "redirect:/cadastros/pedido/cadastrar";
+		return "redirect:/produtosPedidos/cadastrar";
 	}
 
 	@ModelAttribute("produtos")
@@ -109,7 +108,7 @@ public class ProdutoPedidoController {
 		return serviceProduto.buscarTodos();
 	}
 
-	@ModelAttribute("Clientes")
+	@ModelAttribute("clientes")
 	public List<Cliente> listaDeClientes() {
 		return serviceCliente.buscarTodos();
 	}
