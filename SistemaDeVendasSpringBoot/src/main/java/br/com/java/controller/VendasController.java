@@ -49,7 +49,7 @@ public class VendasController {
 	public String consultar(ModelMap model) {
 		model.addAttribute("vendas", serviceVenda.buscarTodos());
 		
-		return "vendas/ConVenda";
+		return "/vendas/ConVenda";
 		
 	}
 	// Lista de Clientes

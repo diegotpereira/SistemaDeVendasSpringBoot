@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="utf-8">
 
-     <div class="panel-body">
+</head>
+
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<br />
+		<div class="panel-body">
         <div class="table-reponsive">
             <table class="table table-sm table-striped table-hover table-bordered">
                   <thead>
@@ -24,7 +26,7 @@
                      <tbody>
 						<tr th:each="v : ${vendas}">
 							<td th:text="${v.id}"></td>
-							<td th:text="${v.cliente.id}"></td>
+<!-- 							<td th:text="${v.cliente.id}"></td> -->
 							<td th:text="${v.cliente}"></td>
 							<td th:text="${v.produto.id}"></td>
 							<td th:text="${v.produto}"></td>
@@ -37,6 +39,6 @@
             </table>
         </div>
      </div>
-
+	</section>
 </body>
 </html>
