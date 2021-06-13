@@ -1,6 +1,6 @@
 package br.com.java.controller;
 
-import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class ProdutoPedidoController {
 		produtoPedidoService.salvar(produtoPedido);
 		attr.addFlashAttribute("sucesso", "Venda cadastrada com sucesso!.");
 
-		return "redirect:/produtos/pedido/listar";
+		return "redirect:/produtosPedidos/cadastrar";
 	}
 
 	@GetMapping("/consultar")
