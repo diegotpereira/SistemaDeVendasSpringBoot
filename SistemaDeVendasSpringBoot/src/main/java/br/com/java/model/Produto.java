@@ -29,18 +29,14 @@ public class Produto  extends AbstractEntity<Long>{
 	private String dataEntrada;
 	private String grupo;
 	private String subGrupo;
-//	private String precoVenda;
-//	private String precoCusto;
 	private String imagem;
-//	private String quantidade;
 	
-	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(name="preco_custo", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal precoCusto;
+	@Column(name="preco_custo", nullable = false)
+	private Double precoCusto;
 	
-	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
-	@Column(name="preco_venda", nullable = false, columnDefinition = "DECIMAL(7) DEFAULT 0.00")
-	private BigDecimal precoVenda;
+	
+	@Column(name="preco_venda", nullable = false)
+	private Double precoVenda;
 	
 
 	
@@ -103,22 +99,6 @@ public class Produto  extends AbstractEntity<Long>{
 		this.subGrupo = subGrupo;
 	}
 
-//	public String getPrecoVenda() {
-//		return precoVenda;
-//	}
-//
-//	public void setPrecoVenda(String precoVenda) {
-//		this.precoVenda = precoVenda;
-//	}
-//
-//	public String getPrecoCusto() {
-//		return precoCusto;
-//	}
-//
-//	public void setPrecoCusto(String precoCusto) {
-//		this.precoCusto = precoCusto;
-//	}
-
 	public String getImagem() {
 		return imagem;
 	}
@@ -143,29 +123,19 @@ public class Produto  extends AbstractEntity<Long>{
 		this.listaProdutosPedidos = listaProdutosPedidos;
 	}
 
-	public BigDecimal getPrecoCusto() {
+	public Double getPrecoCusto() {
 		return precoCusto;
 	}
 
-	public void setPrecoCusto(BigDecimal precoCusto) {
+	public void setPrecoCusto(Double precoCusto) {
 		this.precoCusto = precoCusto;
 	}
 
-	public BigDecimal getPrecoVenda() {
+	public Double getPrecoVenda() {
 		return precoVenda;
 	}
 
-	public void setPrecoVenda(BigDecimal precoVenda) {
+	public void setPrecoVenda(Double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
-	
-	
-
-//	public String getQuantidade() {
-//		return quantidade;
-//	}
-//
-//	public void setQuantidade(String quantidade) {
-//		this.quantidade = quantidade;
-//	}
 }
