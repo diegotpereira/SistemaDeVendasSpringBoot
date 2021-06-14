@@ -57,4 +57,33 @@ public class Venda extends AbstractEntity<Long> {
 	}
 	
 	
+
+    /**
+     * @return String return the nome_cliente
+     */
+    public String getNome_cliente() {
+        return nome_cliente = cliente.getNome();
+    }
+
+    /**
+     * @param nome_cliente the nome_cliente to set
+     */
+    public void setNome_cliente(String nome_cliente) {
+        this.nome_cliente = nome_cliente;
+    }
+
+    /**
+     * @return String return the nome_produto
+     */
+    public String getNome_produto() {
+        return nome_produto = produto.getDescricao();
+    }
+
+    /**
+     * @param nome_produto the nome_produto to set
+     */
+    public void setNome_produto(String nome_produto) {
+        this.nome_produto = nome_produto;
+    }
+
 }
