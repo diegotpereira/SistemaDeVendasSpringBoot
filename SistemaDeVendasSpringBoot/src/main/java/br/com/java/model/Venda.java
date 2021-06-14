@@ -13,10 +13,12 @@ public class Venda extends AbstractEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name ="idCliente")
 	private Cliente cliente;
+	private String nome_cliente;
 	
 	@ManyToOne
 	@JoinColumn(name ="idProduto")
 	private Produto produto;
+	private String nome_produto;
 	
 	private Integer quantidade;
 
@@ -27,6 +29,8 @@ public class Venda extends AbstractEntity<Long> {
 //	public void setCodigoVenda(String codigoVenda) {
 //		this.codigoVenda = codigoVenda;
 //	}
+
+
 
 	public Cliente getCliente() {
 		return cliente;
