@@ -3,6 +3,7 @@ package br.com.java.model;
 import javax.persistence.*;
 import java.lang.String;
 
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_vendas")
@@ -20,17 +21,11 @@ public class Venda extends AbstractEntity<Long> {
 	private Produto produto;
 	private String nome_produto;
 	
+	@Column(name = "quantidade")
 	private Integer quantidade;
 
-//	public String getCodigoVenda() {
-//		return codigoVenda;
-//	}
-//
-//	public void setCodigoVenda(String codigoVenda) {
-//		this.codigoVenda = codigoVenda;
-//	}
-
-
+	@Column(name = "total")
+	private Double total;
 
 	public Cliente getCliente() {
 		return cliente;
@@ -84,6 +79,20 @@ public class Venda extends AbstractEntity<Long> {
      */
     public void setNome_produto(String nome_produto) {
         this.nome_produto = nome_produto;
+    }
+
+    /**
+     * @return Double return the total
+     */
+    public Double getTotal() {
+        return total = quantidade * produto.getPrecoVenda();
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
 }
