@@ -2,6 +2,7 @@
 <html layout:decorate="~{layout}">
     <head>
         <meta charset="UTF-8">
+        <script th:src="@{/js/buscaCep.js}"></script>
     </head>
     <body>
         <div class="container">
@@ -60,27 +61,27 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="endereco" class="col-sm-2 control-label">Endereço</label>
+                        <label for="rua" class="col-sm-2 control-label">Rua</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="txtendereco" placeholder="Digite o endereço" th:field = "*{endereco}" />
+                            <input type="text" class="form-control" id="rua" placeholder="Digite o endereço" th:field = "*{endereco}" />
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="endereco" class="col-sm-2 control-label">Bairro</label>
+                        <label for="bairro" class="col-sm-2 control-label">Bairro</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="txtbairro" placeholder="Digite o bairro" th:field = "*{bairro}">
+                            <input type="text" class="form-control" id="bairro" placeholder="Digite o bairro" th:field = "*{bairro}">
                         </div>
                         <label for="numero" class="col-sm-1 control-label">Número</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="txtnumero" placeholder="Digite o número" th:field = "*{numero}">
+                            <input type="text" class="form-control" id="numero" placeholder="Digite o número" th:field = "*{numero}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="cidade" class="col-sm-2 control-label">Cidade</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="txtcidade" placeholder="Digite a cidade" th:field = "*{cidade}" />
+                            <input type="text" class="form-control" id="cidade" placeholder="Digite a cidade" th:field = "*{cidade}" />
                         </div>
                         <div class="form-group row">
                             <label for="uf" class="col-sm-2 control-label">UF</label>
@@ -97,7 +98,13 @@
                         <div class="form-group row">
                             <label for="cep" class="col-sm-2 control-label">Cep</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="txtcep" data-mask="00000-000" placeholder="Digite o cep" th:field = "*{cep}" />
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="cep" 
+                                       data-mask="00000-000" 
+                                       placeholder="Digite o cep" 
+                                       th:field = "*{cep}"
+                                       onblur="pesquisacep(this.value);" />
                             </div>
                         </div>
                     </div>    
