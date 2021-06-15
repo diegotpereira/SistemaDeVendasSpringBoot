@@ -27,11 +27,11 @@ public class ClienteReportService {
 		try {
 			List<Cliente> clientes = reportRepository.findAll();
 			
-			String reportPath = "br/com/java/relatorio/";
+			String reportPath = "C:\\Users\\administrator\\git\\SistemaDeVendasSpringBoot\\SistemaDeVendasSpringBoot\\src\\main\\resources\\templates\\relatorios";
 			
 			// Compile o relatório Jasper de .jrxml para .japser
 			JasperReport jasperReport = JasperCompileManager
-					.compileReport(reportPath + "clientes.jrxml");
+					.compileReport(reportPath + "\\clientes.jrxml");
 			
 			// Obtenha sua fonte de dados
 			JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(clientes);
@@ -45,7 +45,7 @@ public class ClienteReportService {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrBeanCollectionDataSource);
 			
 			// Exporta o relatório para um arquivo PDF
-			JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "C:/Users/T.I/Documents/RelatoriosJasper/relatorios/clientes.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "\\clientes.pdf");
 			
 			System.out.println("Realizado");
 			
