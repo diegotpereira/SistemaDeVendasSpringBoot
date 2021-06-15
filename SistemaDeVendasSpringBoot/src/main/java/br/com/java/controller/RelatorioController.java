@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.java.service.impl.ClienteReportService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,37 +30,46 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class RelatorioController {
 	
 	@Autowired
-	private DataSource dataSource;
+	private ClienteReportService service;
 	
-	@GetMapping("/index")
-	public String relatorio() {
+	@GetMapping("/report")
+	public String generateReport() {
 		
-		return "/relatorios/index";
+		return service.generateReport();
 	}
 	
-	@PostMapping
-	public void imprimir(@RequestParam Map<String, Object> parametros, HttpServletResponse response) throws JRException, SQLException, IOException{
-		
-		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
-		
-		// Pega o arquivo .jasper localizado na pasta resources
-		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/clientes.jasper");
-		
-		// Cria o objeto JasperReport com o Stream do arquivo jasper da pasta resource.
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		
-		// Passa para o JasperPrint o relatório, os parâmetros e a fonte dos dados, 
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperStream, parametros, dataSource.getConnection());
-		
-		// Configura a reposta para o tipo PDF
-		response.setContentType("application/pdf");
-		
-		// Define que o arquivo pode ser visualizado no navegador e também nome final do arquivo
-		// para fazer download do relatório troque 'inline' por 'attachment'
-		response.setHeader("Content-Disposition", "inline; filename = ClienteService.pdf");
-		
-		// Faz a exportação do relatório para o HttpServletResponse
-		final OutputStream outStream = response.getOutputStream();
-		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-	}
+//	@Autowired
+//	private DataSource dataSource;
+	
+//	@GetMapping("/index")
+//	public String relatorio() {
+//		
+//		return "/relatorios/index";
+//	}
+//	
+//	@PostMapping
+//	public void imprimir(@RequestParam Map<String, Object> parametros, HttpServletResponse response) throws JRException, SQLException, IOException{
+//		
+//		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
+//		
+//		// Pega o arquivo .jasper localizado na pasta resources
+//		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/clientes.jasper");
+//		
+//		// Cria o objeto JasperReport com o Stream do arquivo jasper da pasta resource.
+//		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+//		
+//		// Passa para o JasperPrint o relatório, os parâmetros e a fonte dos dados, 
+//		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperStream, parametros, dataSource.getConnection());
+//		
+//		// Configura a reposta para o tipo PDF
+//		response.setContentType("application/pdf");
+//		
+//		// Define que o arquivo pode ser visualizado no navegador e também nome final do arquivo
+//		// para fazer download do relatório troque 'inline' por 'attachment'
+//		response.setHeader("Content-Disposition", "inline; filename = ClienteService.pdf");
+//		
+//		// Faz a exportação do relatório para o HttpServletResponse
+//		final OutputStream outStream = response.getOutputStream();
+//		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+//	}
 }
