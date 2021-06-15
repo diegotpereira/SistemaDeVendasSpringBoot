@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,13 +31,19 @@ public class RelatorioController {
 	@Autowired
 	private DataSource dataSource;
 	
+	@GetMapping("/index")
+	public String relatorio() {
+		
+		return "/relatorios/index";
+	}
+	
 	@PostMapping
 	public void imprimir(@RequestParam Map<String, Object> parametros, HttpServletResponse response) throws JRException, SQLException, IOException{
 		
 		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
 		
 		// Pega o arquivo .jasper localizado na pasta resources
-		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/cliente.jasper");
+		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/clientes.jasper");
 		
 		// Cria o objeto JasperReport com o Stream do arquivo jasper da pasta resource.
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
